@@ -49,6 +49,8 @@
     <Compile Include="Concrete\EfProductionRepository.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\BuildVersion.cs" />
+    <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\CartItem.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\CustomerAddress.cs" />
     <Compile Include="Entities\ErrorLog.cs" />
