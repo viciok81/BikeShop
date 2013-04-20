@@ -1,0 +1,85 @@
+﻿@model Domain.Entities.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit @Model.Name</h1>
+@using (Html.BeginForm("Edit","Admin", FormMethod.Post, new {enctype = "multipart/form-data"})) {
+    @Html.HiddenFor(m=>m.ProductID)
+    <div class="editor-label">@Html.LabelFor(m=>m.Name)</div>
+    <div class="editor-field">
+        @Html.EditorFor(m=>m.Name)
+        @Html.ValidationMessageFor(m=>m.Name)
+    </div>
+    <div class="editor-label">@Html.LabelFor(m=>m.ProductNumber)</div>
+    <div class="editor-field">
+        @Html.EditorFor(m=>m.ProductNumber)
+        @Html.ValidationMessageFor(m=>m.ProductNumber)
+    </div>
+    <div class="editor-label">@Html.LabelFor(m=>m.Color)</div>
+    <div class="editor-field">
+        @Html.EditorFor(m=>m.Color)
+        @Html.ValidationMessageFor(m=>m.Color)
+    </div>
+    <div class="editor-label">@Html.LabelFor(m=>m.StandardCost)</div>
+    <div class="editor-field">
+        @Html.EditorFor(m=>m.StandardCost)
+        @Html.ValidationMessageFor(m=>m.StandardCost)
+    </div>
+    <div class="editor-label">@Html.LabelFor(m=>m.ListPrice)</div>
+    <div class="editor-field">
+        @Html.EditorFor(m=>m.ListPrice)
+        @Html.ValidationMessageFor(m=>m.ListPrice)
+    </div>
+    <div class="editor-label">@Html.LabelFor(m=>m.Size)</div>
+    <div class="editor-field">
+        @Html.EditorFor(m=>m.Size)
+        @Html.ValidationMessageFor(m=>m.Size)
+    </div>
+    <div class="editor-label">@Html.LabelFor(m=>m.Weight)</div>
+    <div class="editor-field">
+        @Html.EditorFor(m=>m.Weight)
+        @Html.ValidationMessageFor(m=>m.Weight)
+    </div>
+    <div class="editor-label">@Html.LabelFor(m=>m.ProductCategoryID)</div>
+    <div class="editor-field">
+        @Html.EditorFor(m=>m.ProductCategoryID)
+        @Html.ValidationMessageFor(m=>m.ProductCategoryID)
+    </div>
+    <div class="editor-label">@Html.LabelFor(m=>m.SellStartDate)</div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m=>m.SellStartDate, new {@class="datePicker"})
+        @Html.ValidationMessageFor(m=>m.SellStartDate)
+    </div>
+    <div class="editor-label">@Html.LabelFor(m=>m.SellEndDate)</div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m=>m.SellEndDate, new { @class = "datePicker"})
+        @Html.ValidationMessageFor(m=>m.SellEndDate)
+    </div>
+    <div class="editor-label">@Html.LabelFor(m=>m.DiscontinuedDate)</div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m=>m.DiscontinuedDate, new {@class="datePicker"})
+        @Html.ValidationMessageFor(m=>m.DiscontinuedDate)
+    </div>
+    @Html.HiddenFor(m=>m.ModifiedDate)
+    @Html.HiddenFor(m=>m.ThumbNailPhoto)
+    @Html.HiddenFor(m=>m.ThumbnailPhotoFileName)
+    <div class="editor-label">Image</div>
+    <div class="editor-field">
+        @if( Model.ThumbnailPhotoFileName.Length == 0 || Model.ThumbNailPhoto == null)
+        {
+            @:None
+            <div>Add image: <input type="file" name="Image"/></div>
+        }
+        else
+        {
+            <img width="150" height="150" src="@Url.Action("GetImage", "Product", new {Model.ProductID})"/>
+            <div>Change image: <input type="file" name="Image"/></div>
+        }
+        
+    </div>
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Index")
+}

@@ -9,5 +9,6 @@ namespace WebUI
         {
             filters.Add(new HandleErrorAttribute());
         }
+        
     }
 }

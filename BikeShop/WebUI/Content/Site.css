@@ -1,6 +1,16 @@
 ﻿body {
      font-family: Cambria, Georgia, "Times New Roman"; margin: 0;
 }
+div {
+     border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+}
+.nocorner {
+     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
 div#header div.title, 
 div.item H3, 
 div.item H4, 

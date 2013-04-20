@@ -1,7 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 using Domain.Concrete;
 using System.Linq;
 
@@ -16,6 +16,7 @@ namespace Domain.Entities
         //    var t = 1;
         //}
         [Key]
+        [HiddenInput(DisplayValue = false)]
         public int ProductID { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
@@ -26,6 +27,7 @@ namespace Domain.Entities
         public decimal? Weight { get; set; }
 
         private int? _productCategoryId;
+        [HiddenInput(DisplayValue = false)]
         public int? ProductCategoryID
         {
             get { return this._productCategoryId; }
@@ -40,12 +42,16 @@ namespace Domain.Entities
                 }
             }
         }
+        [HiddenInput(DisplayValue = false)]
         public int? ProductModelID { get; set; }
         public DateTime SellStartDate { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime? DiscontinuedDate { get; set; }
+        [HiddenInput(DisplayValue = false)]
         public byte[] ThumbNailPhoto { get; set; }
+        [HiddenInput(DisplayValue = false)]
         public string ThumbnailPhotoFileName { get; set; }
+        [HiddenInput(DisplayValue = false)]
         public Guid rowguid { get; set; }
         public DateTime ModifiedDate { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }

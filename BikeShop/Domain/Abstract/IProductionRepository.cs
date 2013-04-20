@@ -11,6 +11,8 @@ namespace Domain.Abstract
         IQueryable<Customer> Customers { get; }
         IQueryable<CustomerAddress> CustomerAddresses { get; }
         IQueryable<Product> Products { get; }
+        void Save(Product value);
+        void Delete(Product value);
         IQueryable<ProductCategory> ProductCategories { get; }
         IQueryable<ProductDescription> ProductDescriptions { get; }
         IQueryable<ProductModel> ProductModels { get;}

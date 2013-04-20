@@ -40,5 +40,9 @@ namespace WebUI.Controllers
         {
             return View(cart);
         }
+        public ViewResult Checkout()
+        {
+            return View();
+        }
     }
 }

@@ -30,5 +30,11 @@ namespace Domain.Entities
         {
             get { return _cart; }
         }
+        public decimal ComputeTotalValue()
+        {
+            return _cart.Sum(e => e.Product.StandardCost * e.Quantity);
+
+        }
+
     }
 }

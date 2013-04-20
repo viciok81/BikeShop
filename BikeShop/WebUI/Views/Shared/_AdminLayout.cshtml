@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+        @Styles.Render("~/Content/admincss")
+        @Styles.Render("~/Content/themes/base/css")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+<body>
+    <div>
+        @if (TempData["admin_message"] !=null)
+        {
+            <div class="Message">@TempData["admin_message"]</div>
+        }
+        
+        @RenderBody()
+    </div>
+<script>
+    $(function () {
+        $('.datePicker').datepicker({ firstDay: 1, dateFormat: 'mm/dd/yy 00:00:00' });
+
+    })        
+</script>
+</body>
+</html>

@@ -4,6 +4,8 @@ using System.Web.Routing;
 using Domain.Abstract;
 using Domain.Concrete;
 using Ninject;
+using WebUI.Infrastructure.Abstarct;
+using WebUI.Infrastructure.Concrete;
 
 namespace WebUI.Infrastructure
 {
@@ -24,6 +26,7 @@ namespace WebUI.Infrastructure
         private void AddBindings()
         {
             ninjectKernel.Bind<IProductionRepository>().To<EfProductionRepository>();
+            ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
     }
 }

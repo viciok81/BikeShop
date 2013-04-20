@@ -1,0 +1,15 @@
+﻿@model WebUI.Models.LogOnViewModel
+
+@{
+    ViewBag.Title = "Log in to continue";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Log in</h1>
+<p>Login to countinue action</p>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.EditorForModel()
+    <p><input type="submit" value="Log in"/></p>
+}

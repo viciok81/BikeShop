@@ -6,8 +6,8 @@
     <span class="caption">
         <b>Your cart:</b>
         @Model.Items.Sum(x=>x.Quantity) item(s),
-        @*@Model.ComputeTotalValue().ToString("c")*@
+        @Model.ComputeTotalValue().ToString("c")
     </span>
         @Html.ActionLink("Checkout", "Index", "Cart", 
-        new { returnUrl = Request.Url.PathAndQuery }, null)
+        new { returnUrl = Request.Url.PathAndQuery }, new {@class = "nocorner"})
 </div>

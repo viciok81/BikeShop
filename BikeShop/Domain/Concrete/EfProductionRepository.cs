@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Data;
+using System.Linq;
 using Domain.Abstract;
 using Domain.Entities;
 
@@ -65,6 +67,24 @@ namespace Domain.Concrete
         public IQueryable<SalesOrderHeader> SalesOrderHeaders
         {
             get { return context.SalesOrderHeaders; }
+        }
+
+
+        public void Save(Product value)
+        {
+            context.Entry(value).State = value.ProductID == 0 ? EntityState.Added : EntityState.Modified;
+            if (context.Entry(value).State == EntityState.Modified)
+            {
+                value.ModifiedDate = DateTime.Now;
+            }
+            context.SaveChanges();
+        }
+
+
+        public void Delete(Product value)
+        {
+            context.Products.Remove(value);
+            context.SaveChanges();
         }
     }
 }
