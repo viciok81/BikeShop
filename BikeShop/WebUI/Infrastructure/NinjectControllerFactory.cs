@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 using Domain.Abstract;
 using Domain.Concrete;
 using Ninject;
@@ -27,6 +28,8 @@ namespace WebUI.Infrastructure
         {
             ninjectKernel.Bind<IProductionRepository>().To<EfProductionRepository>();
             ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
+            ninjectKernel.Bind<RoleProvider>().To<FormsRoleProvider>();
+            
         }
     }
 }

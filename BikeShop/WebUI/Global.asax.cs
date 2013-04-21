@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
 using Domain.Entities;
 using WebUI.Binders;
 using WebUI.Infrastructure;
@@ -28,6 +29,7 @@ namespace WebUI
 
         protected void Application_Start()
         {
+           
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -36,7 +38,6 @@ namespace WebUI
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
             ModelBinders.Binders.Add(typeof(Cart),new CartModelBinder());
-
 
         }
     }

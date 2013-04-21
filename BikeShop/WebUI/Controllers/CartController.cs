@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Domain.Abstract;
 using Domain.Entities;
@@ -9,6 +6,7 @@ using WebUI.Models;
 
 namespace WebUI.Controllers
 {
+    [Authorize(Roles = "user")]
     public class CartController : Controller
     {
         private IProductionRepository repository;

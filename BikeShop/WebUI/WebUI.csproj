@@ -141,11 +141,14 @@
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\Abstarct\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\FormsAuthProvider.cs" />
+    <Compile Include="Infrastructure\Concrete\FormsRoleProvider.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Infrastructure\StringUtils.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\ProductListViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,7 +225,9 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -242,6 +247,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

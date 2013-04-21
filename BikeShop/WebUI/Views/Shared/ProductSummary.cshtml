@@ -8,11 +8,14 @@
     }
     <h3>@Model.Name</h3>
     @Model.Weight
-    @using(Html.BeginForm("Add","Cart"))
+    @if (HttpContext.Current.User.IsInRole("user"))
     {
-        @Html.HiddenFor(x=>x.ProductID)
-        @Html.Hidden("returnUrl",Request.Url.PathAndQuery)
-        <input type="submit" class="nocorner" value="Add"/>
+        using (Html.BeginForm("Add", "Cart"))
+         {
+             @Html.HiddenFor(x => x.ProductID)
+             @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+             <input type="submit" class="nocorner" value="Add"/>
+         }
     }
     <h4>@Model.StandardCost.ToString("c")</h4>
 </div>

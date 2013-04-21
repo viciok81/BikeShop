@@ -9,6 +9,7 @@ namespace Domain.Abstract
         IQueryable<ErrorLog> ErrorLogs { get; }
         IQueryable<Address> Addresses { get; }
         IQueryable<Customer> Customers { get; }
+        void Save(Customer value);
         IQueryable<CustomerAddress> CustomerAddresses { get; }
         IQueryable<Product> Products { get; }
         void Save(Product value);

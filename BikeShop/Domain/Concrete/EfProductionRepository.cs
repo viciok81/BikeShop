@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using Domain.Abstract;
 using Domain.Entities;
@@ -80,7 +82,17 @@ namespace Domain.Concrete
             context.SaveChanges();
         }
 
-
+        public void Save(Customer value)
+        {
+            value.ModifiedDate = DateTime.Now;
+            if (value.CustomerID == 0)
+            {
+                value.NameStyle = false;
+                value.rowguid = Guid.NewGuid();
+            }
+            context.Entry(value).State = value.CustomerID== 0 ? EntityState.Added : EntityState.Modified;
+            context.SaveChanges();
+        }
         public void Delete(Product value)
         {
             context.Products.Remove(value);

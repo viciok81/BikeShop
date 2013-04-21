@@ -21,7 +21,7 @@ div#header {
      background-color: #444; border-bottom: 2px solid #111; color: White;
 }
 div#header div.title {
-     font-size: 2em; padding: .6em;
+     font-size: 1.7em; padding: .6em;
 }
 div#content {
      border-left: 2px solid gray; margin-left: 9em; padding: 1em;
@@ -88,7 +88,29 @@ tfoot td {
     text-decoration: none; padding: .15em 1.5em .2em 1.5em;
     background-color: #353535; border: 1px solid black;
 }
-div#cart { float:right; margin: .8em; color: Silver; 
-   background-color: #555; padding: .5em .5em .5em 1em; }
+
+#header {
+    display: inline-block;
+    width: 100%;
+}
+
+div#cart { float:right; margin: .5em; color: Silver; 
+   background-color: #555; padding: .5em .5em .5em 1em;
+    /*display: block;
+    position: relative;*/
+}
 div#cart a { text-decoration: none; padding: .4em 1em .4em 1em; line-height:2.1em;
    margin-left: .5em; background-color: #333; color:White; border: 1px solid black;}
+
+div#user { float:right; margin: .8em; color: Silver; 
+   background-color: #555; padding: .5em .5em .5em 1em;
+    /*display: block;
+    position: relative;*/
+}
+div#user span { font-size: .9em; padding: .2em;}
+#header div.title {
+    display: block;
+    position: relative;
+    float: left;
+    
+}

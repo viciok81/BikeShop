@@ -9,8 +9,23 @@
 </head>
 <body>
     <div id="header">
-        @{Html.RenderAction("Summary","Cart");}
+        
         <div class="title">BIKE SHOP</div>
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            <div id="user">
+                <span>@HttpContext.Current.User.Identity.Name</span>
+                <span>@Html.ActionLink("Log out","LogOut","Account")</span>
+            </div>
+            if (HttpContext.Current.User.IsInRole("user")) {Html.RenderAction("Summary", "Cart");}
+            
+        }else
+        {
+            <div id="user">
+                <span>@Html.ActionLink("Log in","LogOn","Account")</span>
+                <span>@Html.ActionLink("Register","Register","Account")</span>
+            </div>
+        }
     </div>
     <div id="categories">@{ Html.RenderAction("Menu", "Navigation"); }</div>
     <div id="content">@RenderBody()</div>

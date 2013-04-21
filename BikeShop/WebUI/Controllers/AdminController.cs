@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Domain.Abstract;
@@ -8,7 +6,7 @@ using Domain.Entities;
 
 namespace WebUI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private IProductionRepository repository;
@@ -17,22 +15,19 @@ namespace WebUI.Controllers
         {
             repository = _repository;
         }
+
         public ActionResult Index()
         {
             return View(repository.Products);
         }
-
-
         public ActionResult Details(int id)
         {
             return View();
         }
-
         public ActionResult Create()
         {
             return View("Edit", new Product());
         }
-
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -68,14 +63,8 @@ namespace WebUI.Controllers
                 TempData["admin_message"] = string.Format("{0} has been saved", product.Name);
                 return RedirectToAction("Index");
             }
-            
             return View(product);
         }
-
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
 
         [HttpPost]
         public ActionResult Delete(int productId)
@@ -88,7 +77,5 @@ namespace WebUI.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        
     }
 }
