@@ -1,0 +1,91 @@
+﻿@model WebUI.Models.CustomerViewModel
+
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+@using(Html.BeginForm("EditCustomer","Customer",FormMethod.Post))
+{
+    @Html.ValidationMessage("Error")
+    @Html.HiddenFor(m => m.Customer.CustomerID)
+    <div class="display-inline-main">
+        <div class="editor-label display-inline label-width-position">@Html.LabelFor(m => m.Customer.Title)</div>
+        <div class="editor-field display-inline">
+            @Html.EditorFor(m => m.Customer.Title) 
+            @Html.ValidationMessageFor(m => m.Customer.Title)
+        </div>
+    </div>
+    <div class="display-inline-main">
+        <div class="editor-label display-inline label-width-position">@Html.LabelFor(m => m.Customer.FirstName)</div>
+        <div class="editor-field display-inline">
+            @Html.EditorFor(m => m.Customer.FirstName) 
+            @Html.ValidationMessageFor(m => m.Customer.FirstName)
+        </div>
+    </div>
+    <div class="display-inline-main">
+        <div class="editor-label display-inline label-width-position">@Html.LabelFor(m => m.Customer.LastName)</div>
+        <div class="editor-field display-inline">
+            @Html.EditorFor(m => m.Customer.LastName) 
+            @Html.ValidationMessageFor(m => m.Customer.LastName)
+        </div>
+    </div>
+    <div class="display-inline-main">
+        <div class="editor-label display-inline label-width-position">@Html.LabelFor(m => m.Customer.MiddleName)</div>
+        <div class="editor-field display-inline">
+            @Html.EditorFor(m => m.Customer.MiddleName) 
+            @Html.ValidationMessageFor(m => m.Customer.MiddleName)
+        </div>
+    </div>
+    <div class="display-inline-main">
+        <div class="editor-label display-inline label-width-position">@Html.LabelFor(m => m.Customer.Suffix)</div>
+        <div class="editor-field display-inline">
+            @Html.EditorFor(m => m.Customer.Suffix) 
+            @Html.ValidationMessageFor(m => m.Customer.Suffix)
+        </div>
+    </div>
+    <div class="display-inline-main">
+        <div class="editor-label display-inline label-width-position">@Html.LabelFor(m => m.Customer.CompanyName)</div>
+        <div class="editor-field display-inline">
+            @Html.EditorFor(m => m.Customer.CompanyName) 
+            @Html.ValidationMessageFor(m => m.Customer.CompanyName)
+        </div>
+    </div>
+    <div class="display-inline-main">
+        <div class="editor-label display-inline label-width-position">@Html.LabelFor(m => m.Customer.SalesPerson)</div>
+        <div class="editor-field display-inline">
+            @Html.EditorFor(m => m.Customer.SalesPerson) 
+            @Html.ValidationMessageFor(m => m.Customer.SalesPerson)
+        </div>
+    </div>
+    <div class="display-inline-main">
+        <div class="editor-label display-inline label-width-position">@Html.LabelFor(m => m.Customer.Phone)</div>
+        <div class="editor-field display-inline">
+            @Html.EditorFor(m => m.Customer.Phone) 
+            @Html.ValidationMessageFor(m => m.Customer.Phone)
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.Customer.rowguid)
+    <div class="display-inline-main">
+        <div class="editor-label display-inline label-width-position">@Html.LabelFor(m => m.NewPassword)</div>
+        <div class="editor-field display-inline">
+            @Html.EditorFor(m => m.NewPassword) (if needed)
+            @Html.ValidationMessageFor(m => m.NewPassword)
+        </div>
+    </div>
+    <div class="display-inline-main">
+        <div class="editor-label display-inline label-width-position">@Html.LabelFor(m => m.RetypeNewPassword)</div>
+        <div class="editor-field display-inline">
+            @Html.EditorFor(m => m.RetypeNewPassword) 
+            @Html.ValidationMessageFor(m => m.RetypeNewPassword)
+        </div>
+
+    </div>
+    <div class="editor-label display-inline label-width-position">@Html.LabelFor(m => m.OldPassword)</div>
+    <div class="editor-field">
+        @Html.EditorFor(m => m.OldPassword) 
+        @Html.ValidationMessageFor(m => m.OldPassword)
+    </div>
+    <div class="display-inline-main">
+        <input type="submit" value="Save"/>
+    </div>
+}

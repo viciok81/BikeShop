@@ -20,6 +20,7 @@ namespace Domain.Abstract
         IQueryable<ProductModelProductDescription> ProductModelProductDescriptions { get; }
         IQueryable<SalesOrderDetail> SalesOrderDetails { get; }
         IQueryable<SalesOrderHeader> SalesOrderHeaders { get; }
+        IQueryable<VProductAndDescription> VProductAndDescriptions { get; }
 
     }
 }

@@ -13,7 +13,7 @@ namespace Domain.Entities
         //public Customer()
         //{
         //    this.CustomerAddresses = new List<CustomerAddress>();
-        //    this.SalesOrderHeaders = new List<SalesOrderHeader>();
+        ////    this.SalesOrderHeaders = new List<SalesOrderHeader>();
         //}
         [Key]
         [HiddenInput(DisplayValue = false), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -43,16 +43,20 @@ namespace Domain.Entities
         public string Phone { get; set; }
         [Required]
         [StringLength(128)]
+        [HiddenInput(DisplayValue = false)]
         public string PasswordHash { get; set; }
         [Required]
         [StringLength(10)]
+        [HiddenInput(DisplayValue = false)]
         public string PasswordSalt { get; set; }
         [Required]
         [HiddenInput(DisplayValue = false), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid rowguid { get; set; }
         [Required]
         public DateTime ModifiedDate { get; set; }
-        //public virtual ICollection<CustomerAddress> CustomerAddresses { get; set; }
+
+        [InverseProperty("Customer")]
+        public virtual ICollection<CustomerAddress> CustomerAddresses { get; set; }
         //public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
     }
 }

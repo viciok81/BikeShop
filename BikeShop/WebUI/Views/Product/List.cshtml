@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Products";
 }
-@foreach (var i in Model.Products)
+@foreach (var i in Model.Products.ToList())
 {
     Html.RenderPartial("ProductSummary",i);
 }

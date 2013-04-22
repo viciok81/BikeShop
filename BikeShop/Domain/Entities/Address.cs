@@ -6,12 +6,12 @@ namespace Domain.Entities
 {
     public partial class Address
     {
-        public Address()
-        {
-            this.CustomerAddresses = new List<CustomerAddress>();
-            this.SalesOrderHeaders = new List<SalesOrderHeader>();
-            this.SalesOrderHeaders1 = new List<SalesOrderHeader>();
-        }
+        //public Address()
+        //{
+        //    this.CustomerAddresses = new List<CustomerAddress>();
+        //    this.SalesOrderHeaders = new List<SalesOrderHeader>();
+        //    this.SalesOrderHeaders1 = new List<SalesOrderHeader>();
+        //}
 
         [Key]
         public int AddressID { get; set; }

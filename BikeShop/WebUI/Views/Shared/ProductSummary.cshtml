@@ -1,22 +1,25 @@
-﻿@model Domain.Entities.Product
+﻿@model Domain.Entities.VProductAndDescription
 <div class="item">
-    @if (Model.ThumbNailPhoto != null)
-    {
-        <div style="float: left;margin: 0;padding: 0;">
-            <img width="60" height="60" src="@Url.Action("GetImage","Product", new {Model.ProductID})"/>
-        </div>
+    @{
+        var img = Url.Action("GetImage", "Product", new {Model.ProductID});
+        if (img != null)
+        {
+            <div style="float: left;margin: 0;padding: 0;">
+                <img width="60" height="60" src="@img"/>
+            </div>
+        }
     }
     <h3>@Model.Name</h3>
-    @Model.Weight
+    @Model.ProductModel
     @if (HttpContext.Current.User.IsInRole("user"))
     {
         using (Html.BeginForm("Add", "Cart"))
-         {
-             @Html.HiddenFor(x => x.ProductID)
-             @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-             <input type="submit" class="nocorner" value="Add"/>
-         }
+        {
+            @Html.HiddenFor(x => x.ProductID)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" class="nocorner" value="Add"/>
+        }
     }
-    <h4>@Model.StandardCost.ToString("c")</h4>
+    <h4>@Model.Description</h4>
 </div>
 

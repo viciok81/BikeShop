@@ -13,17 +13,19 @@
         <div class="title">BIKE SHOP</div>
         @if (HttpContext.Current.User.Identity.IsAuthenticated)
         {
-            <div id="user">
-                <span>@HttpContext.Current.User.Identity.Name</span>
-                <span>@Html.ActionLink("Log out","LogOut","Account")</span>
+            <div class="user" style="padding-left: 0;padding-right: 0;background: initial;">
+                <span>@Html.ActionLink("Log out","LogOut","Account",null,new {@class = "nocorner"})</span>
+            </div>
+            <div class="user">
+                <span>Profile : @Html.ActionLink(HttpContext.Current.User.Identity.Name,"EditCustomer","Customer",null,new {@class = "nocorner"}) </span>
             </div>
             if (HttpContext.Current.User.IsInRole("user")) {Html.RenderAction("Summary", "Cart");}
             
         }else
         {
-            <div id="user">
-                <span>@Html.ActionLink("Log in","LogOn","Account")</span>
-                <span>@Html.ActionLink("Register","Register","Account")</span>
+            <div class="user" style="padding-left: 0;padding-right: 0;background: initial;">
+               <span>@Html.ActionLink("Log in","LogOn","Account",null,new {@class = "nocorner"})</span>
+                <span>@Html.ActionLink("Register","Register","Account",null,new {@class = "nocorner"})</span>
             </div>
         }
     </div>

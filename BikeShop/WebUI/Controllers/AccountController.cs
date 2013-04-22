@@ -56,8 +56,8 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel user)
         {
-            if (user.ConfirmPassword != user.Password)
-                ModelState.AddModelError("", "Passwords are not equal.");
+            //if (user.ConfirmPassword != user.Password)
+            //    ModelState.AddModelError("", "Passwords are not equal.");
             if (repository.Customers.Any(x=>x.EmailAddress == user.UserName))
                 ModelState.AddModelError("UserName", "User with such e-mail already exist.");
             if (ModelState.IsValid)

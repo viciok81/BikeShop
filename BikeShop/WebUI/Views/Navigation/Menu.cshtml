@@ -1,13 +1,27 @@
-﻿@model IEnumerable<Domain.Entities.ProductCategory>
+﻿@model IEnumerable<WebUI.Models.CategoryWithParent>
+@*@model IEnumerable<Domain.Entities.ProductCategory>*@
 @{
-    Layout = null;  
+    Layout = null;
+    string prev="";
+    string displayclass="";
+    System.Text.StringBuilder links = new System.Text.StringBuilder();
 }
-@Html.ActionLink("Home","List","Product")
+<div class="parentcategory">
+    <span>@Html.ActionLink("All","List","Product",new {@style="font-size: 1.1em;"})</span>
+</div>
 @foreach(var item in Model)
 {
-    @Html.RouteLink(
-            item.Name, 
-            new {controller = "Product", action = "List", category = item.Name, page=1}
-        );
-
+    if (item.ParentProductCategoryName != prev)
+    {
+        prev = item.ParentProductCategoryName;
+        displayclass = prev.Replace(' ', '_');
+        <div class="parentcategory @displayclass">
+            <span>@prev</span>
+        </div>
+        
+    }
+    @Html.RouteLink(item.ProductCategoryName, 
+                new {controller = "Product", action = "List", category = item.ProductCategoryName, page=1},
+                new {@class = displayclass}
+                );
 }

@@ -71,6 +71,10 @@ namespace Domain.Concrete
             get { return context.SalesOrderHeaders; }
         }
 
+        public IQueryable<VProductAndDescription> VProductAndDescriptions
+        {
+            get { return context.VProductAndDescriptions; }
+        }
 
         public void Save(Product value)
         {
@@ -84,13 +88,19 @@ namespace Domain.Concrete
 
         public void Save(Customer value)
         {
+            
             value.ModifiedDate = DateTime.Now;
             if (value.CustomerID == 0)
             {
+                context.Entry(value).State = EntityState.Added;//value.CustomerID == 0 ? EntityState.Added : EntityState.Modified;
                 value.NameStyle = false;
                 value.rowguid = Guid.NewGuid();
             }
-            context.Entry(value).State = value.CustomerID== 0 ? EntityState.Added : EntityState.Modified;
+            else
+            {
+                var oldvalue = context.Customers.SingleOrDefault(x => x.CustomerID == value.CustomerID);
+                context.Entry(oldvalue).CurrentValues.SetValues(value);
+            }
             context.SaveChanges();
         }
         public void Delete(Product value)
@@ -98,5 +108,7 @@ namespace Domain.Concrete
             context.Products.Remove(value);
             context.SaveChanges();
         }
+
+
     }
 }

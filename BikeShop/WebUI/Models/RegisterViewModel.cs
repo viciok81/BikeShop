@@ -16,6 +16,7 @@ namespace WebUI.Models
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
+        [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
         [Required]

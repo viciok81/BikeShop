@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/css")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="header">
+        
+        <div class="title">BIKE SHOP</div>
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            <div class="user">
+                <span>Profile : @HttpContext.Current.User.Identity.Name @Html.ActionLink("Log out","LogOut","Account",null,new {@class = "nocorner"})</span>
+            </div>
+            <div class="user" style="padding-left: 0;padding-right: 0;background: initial;">
+                <span>@Html.ActionLink("Home","List","Product",null,new {@class = "nocorner"})</span>
+            </div>
+            if (HttpContext.Current.User.IsInRole("user")) {Html.RenderAction("Summary", "Cart");}
+        }else
+        {
+            <div class="user" style="padding-left: 0;padding-right: 0;background: initial;">
+                <span>@Html.ActionLink("Log in","LogOn","Account",null,new {@class = "nocorner"})</span>
+                <span>@Html.ActionLink("Register","Register","Account",null,new {@class = "nocorner"})</span>
+            </div>
+        }
+    </div>
+    <div id="categories">@Html.ActionLink("Personal","EditCustomer","Customer")
+        @Html.ActionLink("Addresses","Addresses","Customer")
+    </div>
+    <div id="content">
+        @if (TempData["customer_message"] !=null)
+        {
+            <div class="Message">@TempData["customer_message"]</div>
+        }
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -39,7 +39,11 @@ div#categories A
 div#categories A.selected { background-color: #666; color: White; }
 div#categories A:hover { background-color: #CCC; }
 div#categories A.selected:hover { background-color: #666; }
-
+div.parentcategory{
+    font-size: 1em;
+    font-weight: bolder;
+    text-align: center;
+}
 
 div.item {
      border-top: 1px dotted gray; padding-top: .7em; margin-bottom: .7em;
@@ -62,13 +66,17 @@ div.item form {
 div.item input {
     color: white;background-color: #333;border: 1px solid black;cursor: pointer;
 }
-div.pager { 
+div.pager {
+    width: 99%;
+    display: inline-block;
     text-align:right; border-top: 2px solid silver;
     padding: .5em 0 0 0; margin-top: 1em; 
 }
-div.pager A { 
+div.pager A {
+    display: block;
+    float: left;
     font-size: 1.1em; color: #666; text-decoration: none;
-    padding: 0 .4em 0 .4em; 
+    padding: 0 .3em 0 .3em; 
 }
 div.pager A:hover {
      background-color: Silver;
@@ -102,15 +110,38 @@ div#cart { float:right; margin: .5em; color: Silver;
 div#cart a { text-decoration: none; padding: .4em 1em .4em 1em; line-height:2.1em;
    margin-left: .5em; background-color: #333; color:White; border: 1px solid black;}
 
-div#user { float:right; margin: .8em; color: Silver; 
+div.user { float:right; margin: .5em; color: Silver; 
    background-color: #555; padding: .5em .5em .5em 1em;
     /*display: block;
     position: relative;*/
 }
-div#user span { font-size: .9em; padding: .2em;}
+/*div.user span { font-size: .9em;}*/
+div.user span a{text-decoration: none; padding: .4em 1em .4em 1em; line-height:2.1em;
+   margin-left: .5em; background-color: #333; color:White; border: 1px solid black;}
 #header div.title {
     display: block;
     position: relative;
     float: left;
     
 }
+.display-inline-main {
+    display: inline-block;
+    width: 99%;
+}
+.display-inline {
+    float: left;
+    display: block;
+}
+.label-width-position {
+    width: 11em;
+    margin: .2em;
+    border-bottom: dotted 1px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
+.field-validation-error { color: red; display: block; }
+.field-validation-valid { display: none; }
+.input-validation-error { border: 1px solid red; background-color: #ffeeee; }
+.validation-summary-errors { font-weight: bold; color: red; }
+.validation-summary-valid { display: none; }

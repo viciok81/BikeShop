@@ -18,10 +18,10 @@ namespace WebUI.Controllers
 
         public ActionResult List(string category, int page = 1)
         {
-            var products = repository.Products;
+            var products = repository.VProductAndDescriptions;
             if (category != null)
             {
-                products = products.Where(x => x.ProductCategory.Name == category);
+                products = products.Join(repository.Products.Where(x=>x.ProductCategory.Name == category), x=>x.ProductID,y=>y.ProductID, (x,y)=>x).AsQueryable();
             }
             var t = products.Count();
         ProductListViewModel result = new ProductListViewModel

@@ -28,7 +28,7 @@ namespace Domain.Concrete
         public DbSet<SalesOrderDetail> SalesOrderDetails { get; set; }
         public DbSet<SalesOrderHeader> SalesOrderHeaders { get; set; }
         //public DbSet<vGetAllCategory> vGetAllCategories { get; set; }
-        //public DbSet<vProductAndDescription> vProductAndDescriptions { get; set; }
+        public DbSet<VProductAndDescription> VProductAndDescriptions { get; set; }
         //public DbSet<vProductModelCatalogDescription> vProductModelCatalogDescriptions { get; set; }
     }
 }
