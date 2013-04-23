@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,5 +31,22 @@ namespace Domain.Concrete
         //public DbSet<vGetAllCategory> vGetAllCategories { get; set; }
         public DbSet<VProductAndDescription> VProductAndDescriptions { get; set; }
         //public DbSet<vProductModelCatalogDescription> vProductModelCatalogDescriptions { get; set; }
+
+        //private class CustomerAddressMap : EntityTypeConfiguration<CustomerAddress>
+        //{
+        // public CustomerAddressMap()
+        // {
+        //     this.HasRequired(t => t.Address)
+        //        .WithMany(t => t.CustomerAddresses)
+        //        .HasForeignKey(d => d.AddressID);
+        //    this.HasRequired(t => t.Customer)
+        //        .WithMany(t => t.CustomerAddresses)
+        //        .HasForeignKey(d => d.CustomerID);
+        // }
+        //}
+        //protected override void OnModelCreating(DbModelBuilder builder)
+        //{
+        //    builder.Configurations.Add(new CustomerAddressMap());
+        //}
     }
 }

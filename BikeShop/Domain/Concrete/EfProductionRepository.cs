@@ -11,6 +11,7 @@ namespace Domain.Concrete
     public class EfProductionRepository :IProductionRepository
     {
         private  EfDbContext context = new EfDbContext();
+#region Get
         public IQueryable<Product> Products
         {
             get { return context.Products; }
@@ -75,9 +76,12 @@ namespace Domain.Concrete
         {
             get { return context.VProductAndDescriptions; }
         }
-
+#endregion
+#region Save Update
+        
         public void Save(Product value)
         {
+
             context.Entry(value).State = value.ProductID == 0 ? EntityState.Added : EntityState.Modified;
             if (context.Entry(value).State == EntityState.Modified)
             {
@@ -88,7 +92,6 @@ namespace Domain.Concrete
 
         public void Save(Customer value)
         {
-            
             value.ModifiedDate = DateTime.Now;
             if (value.CustomerID == 0)
             {
@@ -103,12 +106,29 @@ namespace Domain.Concrete
             }
             context.SaveChanges();
         }
+        public void Save(Address value)
+        {
+            context.Entry(value).State = value.AddressID == 0 ? EntityState.Added : EntityState.Modified;
+            if (context.Entry(value).State == EntityState.Modified)
+            {
+                value.ModifiedDate = DateTime.Now;
+            }
+            context.SaveChanges();
+            
+        }
+#endregion
+#region Delete
         public void Delete(Product value)
         {
             context.Products.Remove(value);
             context.SaveChanges();
         }
-
+        public void Delete(Address value)
+        {
+            context.Addresses.Remove(value);
+            context.SaveChanges();
+        }
+#endregion
 
     }
 }

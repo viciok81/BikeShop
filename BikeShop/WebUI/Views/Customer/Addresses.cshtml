@@ -1,8 +1,27 @@
-﻿@model IEnumerable<Domain.Entities.CustomerAddress>
+﻿@model IEnumerable<WebUI.Models.AddressesListModel>
 
 @{
     ViewBag.Title = "Addresses";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
-@Model.Count()
-<h2>Addresses</h2>
+<div class="address" style="font-weight: bold;">
+    <div class="type">Address Type</div>
+    <div class="country">Country Region</div>
+    <div class="state">State Province</div>
+    <div class="city">City</div>
+    <div class="address1">Address</div>
+    <div class="zip">Postal Code</div>
+    <div style="width: 9%">&nbsp;</div>
+</div>
+@foreach (var i in Model)
+{
+    <div class="address">
+        <div class="type">@Html.ActionLink(i.AddressType, "EditAddress", new {i.Address.AddressID})</div>
+        @{ Html.RenderPartial("Address", i.Address); }
+        @using (Html.BeginForm("DeleteAddress", "Customer")) {
+        @Html.Hidden("addressid", i.Address.AddressID)
+        <div style="width: 9%"><input type="submit" value="Delete" class="actionButtons nocorner" style="margin:0 .1em;padding: 0 .2em;"/></div>
+    }
+    </div>
+    
+    }

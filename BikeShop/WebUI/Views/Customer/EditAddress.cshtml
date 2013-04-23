@@ -1,0 +1,13 @@
+﻿@model Domain.Entities.Address
+
+@{
+    ViewBag.Title = "EditAddress";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>Edit Address</h2>
+@using(Html.BeginForm("EditAddress","Customer",FormMethod.Post)){
+    @Html.ValidationSummary(true)
+    @Html.EditorForModel()
+    <input type="submit" value="Save"/>
+}

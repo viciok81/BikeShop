@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Domain.Abstract;
+using Domain.Entities;
 using WebUI.Infrastructure;
 using WebUI.Models;
 
@@ -29,12 +30,7 @@ namespace WebUI.Controllers
             return View(result);
         }
 
-        public ViewResult Addresses()
-        {
-            var customerAddresses = repository.CustomerAddresses.Where(x => x.Customer.CustomerID == 29485); //EmailAddress == this.HttpContext.User.Identity.Name
-            return View(customerAddresses);
-        }
-
+       
         [HttpPost]
         public ActionResult EditCustomer(CustomerViewModel model)
         {
@@ -91,6 +87,60 @@ namespace WebUI.Controllers
             model.OldPassword = null;
             model.RetypeNewPassword = null;
             return View(model);
+        }
+    
+        public ViewResult Addresses()
+        {
+            var customerAddresses = repository.CustomerAddresses.Where(x => x.CustomerID == 29559)
+                            .Select(x=> new AddressesListModel()
+                                {
+                                    Address = x.Address,
+                                    Customer = x.Customer,
+                                    AddressType = x.AddressType
+                                }
+            );
+                //EmailAddress == this.HttpContext.User.Identity.Name
+            return View(customerAddresses);
+        }
+
+        public ActionResult EditAddress(int addressid)
+        {
+            return View(repository.Addresses.FirstOrDefault(x=>x.AddressID == addressid));
+        }
+        [HttpPost]
+        public ActionResult EditAddress(Address model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Addresses");
+            }
+            return View(model);
+        }
+        public ActionResult CreateAddress()
+        {
+            return View("EditAddress",new Address());
+        }
+
+        [HttpPost]
+        public ActionResult DeleteAddress(int addressid)
+        {
+            var custumeraddress = repository.CustomerAddresses
+                .SingleOrDefault(x => x.AddressID == addressid && x.CustomerID == 29559);  //EmailAddress == this.HttpContext.User.Identity.Name
+            if (custumeraddress != null)
+            {
+                try
+                {
+                    repository.Delete(custumeraddress.Address);
+                    TempData["customer_message"] = "Address has been deleted.";
+                    
+                }
+                catch (Exception ex)
+                {
+                    TempData["customer_message"] = "Error ocured deleting address.";
+                    return View("EditAddress", custumeraddress.Address);
+                }
+            }
+            return RedirectToAction("Addresses");
         }
     }
 }

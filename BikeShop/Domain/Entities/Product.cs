@@ -8,7 +8,7 @@ using System.Linq;
 namespace Domain.Entities
 {
     [Table("Product", Schema = "SalesLT")]
-    public partial class Product
+    public partial class Product 
     {
         //public Product()
         //{

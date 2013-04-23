@@ -145,3 +145,40 @@ div.user span a{text-decoration: none; padding: .4em 1em .4em 1em; line-height:2
 .input-validation-error { border: 1px solid red; background-color: #ffeeee; }
 .validation-summary-errors { font-weight: bold; color: red; }
 .validation-summary-valid { display: none; }
+
+.address {
+    display: block;
+}
+.address div {
+    padding: .1em;
+    margin: .1em;
+    float: left;
+    text-align: center;
+    position: relative;
+    padding-left: 3px;
+    margin-left:  3px;
+    border-bottom: dotted 2px;
+}
+.address div.type {
+    width: 10%;
+}
+.address div.country
+{
+    width: 10%;
+}
+.address div.state
+{
+    width: 10%;
+}
+.address div.city
+{
+    width: 10%;
+}
+.address div.address1
+{
+    width: 35%;
+}
+.address div.zip
+{
+    width: 10%;
+}

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
-    public partial class ProductModelProductDescription
+    public partial class ProductModelProductDescription 
     {
         [Key]
         public int ProductModelID { get; set; }

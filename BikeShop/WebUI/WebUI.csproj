@@ -145,6 +145,7 @@
     <Compile Include="Infrastructure\Concrete\FormsRoleProvider.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Infrastructure\StringUtils.cs" />
+    <Compile Include="Models\AddressesListModel.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CategoryWithParent.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
@@ -255,6 +256,8 @@
     <Content Include="Views\Shared\_CustomerLayout.cshtml" />
     <Content Include="Views\Customer\EditCustomer.cshtml" />
     <Content Include="Views\Customer\Addresses.cshtml" />
+    <Content Include="Views\Shared\Address.cshtml" />
+    <Content Include="Views\Customer\EditAddress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

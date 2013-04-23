@@ -9,11 +9,8 @@ namespace Domain.Abstract
         IQueryable<ErrorLog> ErrorLogs { get; }
         IQueryable<Address> Addresses { get; }
         IQueryable<Customer> Customers { get; }
-        void Save(Customer value);
         IQueryable<CustomerAddress> CustomerAddresses { get; }
         IQueryable<Product> Products { get; }
-        void Save(Product value);
-        void Delete(Product value);
         IQueryable<ProductCategory> ProductCategories { get; }
         IQueryable<ProductDescription> ProductDescriptions { get; }
         IQueryable<ProductModel> ProductModels { get;}
@@ -21,6 +18,13 @@ namespace Domain.Abstract
         IQueryable<SalesOrderDetail> SalesOrderDetails { get; }
         IQueryable<SalesOrderHeader> SalesOrderHeaders { get; }
         IQueryable<VProductAndDescription> VProductAndDescriptions { get; }
+
+        void Save(Customer value);
+        void Save(Product value);
+        void Save(Address value);
+
+        void Delete(Product value);
+        void Delete(Address value);
 
     }
 }

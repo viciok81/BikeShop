@@ -7,13 +7,13 @@ using System.Web.Mvc;
 namespace Domain.Entities
 {
     [Table("Customer", Schema = "SalesLT")]
-    public partial class Customer
+    public partial class Customer 
     {
         
         //public Customer()
         //{
         //    this.CustomerAddresses = new List<CustomerAddress>();
-        ////    this.SalesOrderHeaders = new List<SalesOrderHeader>();
+        //////    this.SalesOrderHeaders = new List<SalesOrderHeader>();
         //}
         [Key]
         [HiddenInput(DisplayValue = false), DatabaseGenerated(DatabaseGeneratedOption.Identity)]

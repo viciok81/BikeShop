@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Domain.Entities
 {
      [Table("ProductCategory", Schema = "SalesLT")]
-    public partial class ProductCategory
+    public partial class ProductCategory 
     {
         //public ProductCategory()
         //{
