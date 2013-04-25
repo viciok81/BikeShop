@@ -8,6 +8,7 @@
 <h1>Edit @Model.Name</h1>
 @using (Html.BeginForm("Edit","Admin", FormMethod.Post, new {enctype = "multipart/form-data"})) {
     @Html.HiddenFor(m=>m.ProductID)
+    @Html.HiddenFor(m=>m.rowguid)
     <div class="editor-label">@Html.LabelFor(m=>m.Name)</div>
     <div class="editor-field">
         @Html.EditorFor(m=>m.Name)
@@ -68,7 +69,7 @@
     @Html.HiddenFor(m=>m.ThumbnailPhotoFileName)
     <div class="editor-label">Image</div>
     <div class="editor-field">
-        @if( Model.ThumbnailPhotoFileName.Length == 0 || Model.ThumbNailPhoto == null)
+        @if (string.IsNullOrEmpty(Model.ThumbnailPhotoFileName) || Model.ThumbNailPhoto == null)
         {
             @:None
             <div>Add image: <input type="file" name="Image"/></div>

@@ -4,6 +4,7 @@
     ViewBag.Title = "Addresses";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
+@Html.ActionLink("Add address","CreateAddress","Customer")
 <div class="address" style="font-weight: bold;">
     <div class="type">Address Type</div>
     <div class="country">Country Region</div>
@@ -16,10 +17,10 @@
 @foreach (var i in Model)
 {
     <div class="address">
-        <div class="type">@Html.ActionLink(i.AddressType, "EditAddress", new {i.Address.AddressID})</div>
+        <div class="type">@Html.ActionLink(i.AddressType, "EditAddress", new {i.rowguid})</div>
         @{ Html.RenderPartial("Address", i.Address); }
         @using (Html.BeginForm("DeleteAddress", "Customer")) {
-        @Html.Hidden("addressid", i.Address.AddressID)
+        @Html.Hidden("rowguid", i.Address.rowguid)
         <div style="width: 9%"><input type="submit" value="Delete" class="actionButtons nocorner" style="margin:0 .1em;padding: 0 .2em;"/></div>
     }
     </div>

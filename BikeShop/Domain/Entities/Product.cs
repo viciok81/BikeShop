@@ -4,11 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
 using Domain.Concrete;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Domain.Entities
 {
     [Table("Product", Schema = "SalesLT")]
-    public partial class Product 
+    public partial class Product : BikeShopEntity
     {
         //public Product()
         //{
@@ -16,7 +17,7 @@ namespace Domain.Entities
         //    var t = 1;
         //}
         [Key]
-        [HiddenInput(DisplayValue = false)]
+        [HiddenInput(DisplayValue = false), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductID { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
@@ -27,7 +28,7 @@ namespace Domain.Entities
         public decimal? Weight { get; set; }
         [HiddenInput(DisplayValue = false)]
 
-        [ForeignKey("ProductCategory")]
+     //   [ForeignKey("ProductCategory")]
         public int? ProductCategoryID { get; set; }
         
         [HiddenInput(DisplayValue = false)]
@@ -39,13 +40,18 @@ namespace Domain.Entities
         public byte[] ThumbNailPhoto { get; set; }
         [HiddenInput(DisplayValue = false)]
         public string ThumbnailPhotoFileName { get; set; }
-        [HiddenInput(DisplayValue = false)]
-        public Guid rowguid { get; set; }
-        public DateTime ModifiedDate { get; set; }
-         [InverseProperty("Products")]
+        //[HiddenInput(DisplayValue = false)]
+        //public Guid rowguid { get; set; }
+        //public DateTime ModifiedDate { get; set; }
+ //        [InverseProperty("Products")]
         public virtual ProductCategory ProductCategory { get; set; }
-       // public virtual ProductModel ProductModel { get; set; }
-       // public virtual ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }
+       
+        public virtual ProductModel ProductModel { get; set; }
+ //       [InverseProperty("Product")]
+        public virtual ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }
+
+ //       [InverseProperty("Product")]
+        public virtual ICollection<CartItem> CartItems { get; set; }
 
     }
 }

@@ -7,14 +7,9 @@ using System.Web.Mvc;
 namespace Domain.Entities
 {
     [Table("Customer", Schema = "SalesLT")]
-    public partial class Customer 
+    public partial class Customer : BikeShopEntity
     {
         
-        //public Customer()
-        //{
-        //    this.CustomerAddresses = new List<CustomerAddress>();
-        //////    this.SalesOrderHeaders = new List<SalesOrderHeader>();
-        //}
         [Key]
         [HiddenInput(DisplayValue = false), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CustomerID { get; set; }
@@ -49,14 +44,14 @@ namespace Domain.Entities
         [StringLength(10)]
         [HiddenInput(DisplayValue = false)]
         public string PasswordSalt { get; set; }
-        [Required]
-        [HiddenInput(DisplayValue = false), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid rowguid { get; set; }
-        [Required]
-        public DateTime ModifiedDate { get; set; }
+        
 
-        [InverseProperty("Customer")]
+ //       [InverseProperty("Customer")]
         public virtual ICollection<CustomerAddress> CustomerAddresses { get; set; }
-        //public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
+ //       [InverseProperty("Customer")]
+        public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
+
+ //       [InverseProperty("Customer")]
+        public virtual ICollection<CartItem> CartItems { get; set; }
     }
 }

@@ -18,16 +18,26 @@ namespace WebUI.Controllers
 
         public ActionResult List(string category, int page = 1)
         {
-            var products = repository.VProductAndDescriptions;
-            if (category != null)
+            //var products = repository.VProductAndDescriptions.Distinct();
+            var products = repository.Products;
+            if (!string.IsNullOrEmpty(category))
             {
-                products = products.Join(repository.Products.Where(x=>x.ProductCategory.Name == category), x=>x.ProductID,y=>y.ProductID, (x,y)=>x).AsQueryable();
+                products = products.Where(x => x.ProductCategory.Name == category);
+                //products = products.Join(repository.Products.Where(x=>x.ProductCategory.Name == category), x=>x.ProductID,y=>y.ProductID, (x,y)=>x).AsQueryable();
             }
-            var t = products.Count();
+            //var t = products.Count();
+            var viewProducts = products.Select(x => new VProductAndDescription
+                                                        {
+                                                            ProductID = x.ProductID,
+                                                            Name = x.Name,
+                                                            Description = x.Name,
+                                                            ProductModel = x.ProductModel.Name,
+                                                            Culture = x.Name
+                                                        });
         ProductListViewModel result = new ProductListViewModel
                                               {
                                                   CurrentCategory = category,
-                                                  Products = products.
+                                                  Products = viewProducts.
                                                         OrderBy(x => x.Name).Skip((page - 1) * PageSize).Take(PageSize),
                                                   PagingInfo = new PagingInfo
                                                   {

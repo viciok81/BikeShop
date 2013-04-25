@@ -5,8 +5,7 @@ namespace Domain.Abstract
 {
     public interface IProductionRepository
     {
-        IQueryable<BuildVersion> BuildVersions { get; }
-        IQueryable<ErrorLog> ErrorLogs { get; }
+       
         IQueryable<Address> Addresses { get; }
         IQueryable<Customer> Customers { get; }
         IQueryable<CustomerAddress> CustomerAddresses { get; }
@@ -17,14 +16,16 @@ namespace Domain.Abstract
         IQueryable<ProductModelProductDescription> ProductModelProductDescriptions { get; }
         IQueryable<SalesOrderDetail> SalesOrderDetails { get; }
         IQueryable<SalesOrderHeader> SalesOrderHeaders { get; }
-        IQueryable<VProductAndDescription> VProductAndDescriptions { get; }
 
-        void Save(Customer value);
-        void Save(Product value);
-        void Save(Address value);
+        //void Save(Customer value);
+        //void Save(Product value);
+        //void Save(Address value);
+        void Save<T>(T value) where T : BikeShopEntity;
 
-        void Delete(Product value);
-        void Delete(Address value);
+        void Delete<T>(T value) where T : BikeShopEntity;
+        //void Delete(Product value);
+        //void Delete(Address value);
 
+        IQueryable<CartItem> CartItems { get; }
     }
 }

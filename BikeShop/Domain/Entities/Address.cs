@@ -7,17 +7,11 @@ using System.Web.Mvc;
 namespace Domain.Entities
 {
     [Table("Address", Schema = "SalesLT")]
-    public partial class Address
+    public partial class Address : BikeShopEntity
     {
-        //public Address()
-        //{
-        //    this.CustomerAddresses = new List<CustomerAddress>();
-        ////    this.SalesOrderHeaders = new List<SalesOrderHeader>();
-        ////    this.SalesOrderHeaders1 = new List<SalesOrderHeader>();
-        //}
-
+       
         [Key]
-        [HiddenInput(DisplayValue = false)]
+        [HiddenInput(DisplayValue = false), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AddressID { get; set; }
         [Required]
         [StringLength(60)]
@@ -36,13 +30,11 @@ namespace Domain.Entities
         [Required]
         [StringLength(15)]
         public string PostalCode { get; set; }
-        [HiddenInput(DisplayValue = false)]
-        public Guid rowguid { get; set; }
-        [HiddenInput(DisplayValue = false)]
-        public DateTime ModifiedDate { get; set; }
         [InverseProperty("Address")]
         public virtual ICollection<CustomerAddress> CustomerAddresses { get; set; }
-        //public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
-        //public virtual ICollection<SalesOrderHeader> SalesOrderHeaders1 { get; set; }
+        [InverseProperty("Address")]
+        public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; }
+        [InverseProperty("Address1")]
+        public virtual ICollection<SalesOrderHeader> SalesOrderHeaders1 { get; set; }
     }
 }

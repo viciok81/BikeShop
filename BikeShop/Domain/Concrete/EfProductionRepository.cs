@@ -8,25 +8,18 @@ using Domain.Entities;
 
 namespace Domain.Concrete
 {
-    public class EfProductionRepository :IProductionRepository
+    public class EfProductionRepository : IProductionRepository
     {
-        private  EfDbContext context = new EfDbContext();
-#region Get
+        private EfDbContext context = new EfDbContext();
+
+        #region Get
+
         public IQueryable<Product> Products
         {
             get { return context.Products; }
         }
 
-        public IQueryable<BuildVersion> BuildVersions
-        {
-            get { return context.BuildVersions; }
-        }
-
-        public IQueryable<ErrorLog> ErrorLogs
-        {
-            get { return context.ErrorLogs; }
-        }
-
+        
         public IQueryable<Address> Addresses
         {
             get { return context.Addresses; }
@@ -54,7 +47,7 @@ namespace Domain.Concrete
 
         public IQueryable<ProductModel> ProductModels
         {
-            get{ return context.ProductModels;}
+            get { return context.ProductModels; }
         }
 
         public IQueryable<ProductModelProductDescription> ProductModelProductDescriptions
@@ -72,63 +65,35 @@ namespace Domain.Concrete
             get { return context.SalesOrderHeaders; }
         }
 
-        public IQueryable<VProductAndDescription> VProductAndDescriptions
+        public IQueryable<CartItem> CartItems
         {
-            get { return context.VProductAndDescriptions; }
+            get { return context.CartItems; }
         }
-#endregion
-#region Save Update
-        
-        public void Save(Product value)
-        {
+    
 
-            context.Entry(value).State = value.ProductID == 0 ? EntityState.Added : EntityState.Modified;
-            if (context.Entry(value).State == EntityState.Modified)
-            {
-                value.ModifiedDate = DateTime.Now;
-            }
-            context.SaveChanges();
-        }
+    #endregion
 
-        public void Save(Customer value)
+        public void Save<T>(T value) where T : BikeShopEntity
         {
+            var oldvalue = context.Set<T>().SingleOrDefault(x => x.rowguid == value.rowguid);
             value.ModifiedDate = DateTime.Now;
-            if (value.CustomerID == 0)
+            if (oldvalue != null)
             {
-                context.Entry(value).State = EntityState.Added;//value.CustomerID == 0 ? EntityState.Added : EntityState.Modified;
-                value.NameStyle = false;
-                value.rowguid = Guid.NewGuid();
+                context.Entry(oldvalue).CurrentValues.SetValues(value);
             }
             else
             {
-                var oldvalue = context.Customers.SingleOrDefault(x => x.CustomerID == value.CustomerID);
-                context.Entry(oldvalue).CurrentValues.SetValues(value);
+                value.rowguid = Guid.NewGuid();
+                context.Entry(value).State = EntityState.Added ;
             }
             context.SaveChanges();
         }
-        public void Save(Address value)
+
+        public void Delete<T>(T value) where T : BikeShopEntity
         {
-            context.Entry(value).State = value.AddressID == 0 ? EntityState.Added : EntityState.Modified;
-            if (context.Entry(value).State == EntityState.Modified)
-            {
-                value.ModifiedDate = DateTime.Now;
-            }
-            context.SaveChanges();
-            
-        }
-#endregion
-#region Delete
-        public void Delete(Product value)
-        {
-            context.Products.Remove(value);
+            context.Entry(value).State = EntityState.Deleted;
             context.SaveChanges();
         }
-        public void Delete(Address value)
-        {
-            context.Addresses.Remove(value);
-            context.SaveChanges();
-        }
-#endregion
 
     }
 }

@@ -12,6 +12,7 @@ using System.Web.Security;
 using Domain.Entities;
 using WebUI.Binders;
 using WebUI.Infrastructure;
+using WebUI.Infrastructure.Concrete;
 
 namespace WebUI
 {
@@ -37,7 +38,7 @@ namespace WebUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
-            ModelBinders.Binders.Add(typeof(Cart),new CartModelBinder());
+           // ModelBinders.Binders.Add(typeof(Cart),new CartModelBinder());
 
         }
     }

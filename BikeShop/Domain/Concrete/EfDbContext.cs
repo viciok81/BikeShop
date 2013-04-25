@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Entities.Maping;
 
 namespace Domain.Concrete
 {
@@ -13,11 +14,18 @@ namespace Domain.Concrete
     {
         static EfDbContext()
         {
-            Database.SetInitializer<EfDbContext>(null);
+            //Database.Initialize(true);
+            //Database.SetInitializer<EfDbContext>(null);
+            //Database.SetInitializer<EfDbContext>(true);
+            Database.SetInitializer<EfDbContext>(new CreateDatabaseIfNotExists<EfDbContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EfDbContext>());
         }
+        //public EfDbContext() :base ()
+        //{
+           
+        //}
 
-        public DbSet<BuildVersion> BuildVersions { get; set; }
-        public DbSet<ErrorLog> ErrorLogs { get; set; }
+        
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerAddress> CustomerAddresses { get; set; }
@@ -28,25 +36,25 @@ namespace Domain.Concrete
         public DbSet<ProductModelProductDescription> ProductModelProductDescriptions { get; set; }
         public DbSet<SalesOrderDetail> SalesOrderDetails { get; set; }
         public DbSet<SalesOrderHeader> SalesOrderHeaders { get; set; }
-        //public DbSet<vGetAllCategory> vGetAllCategories { get; set; }
-        public DbSet<VProductAndDescription> VProductAndDescriptions { get; set; }
-        //public DbSet<vProductModelCatalogDescription> vProductModelCatalogDescriptions { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
-        //private class CustomerAddressMap : EntityTypeConfiguration<CustomerAddress>
-        //{
-        // public CustomerAddressMap()
-        // {
-        //     this.HasRequired(t => t.Address)
-        //        .WithMany(t => t.CustomerAddresses)
-        //        .HasForeignKey(d => d.AddressID);
-        //    this.HasRequired(t => t.Customer)
-        //        .WithMany(t => t.CustomerAddresses)
-        //        .HasForeignKey(d => d.CustomerID);
-        // }
-        //}
-        //protected override void OnModelCreating(DbModelBuilder builder)
-        //{
-        //    builder.Configurations.Add(new CustomerAddressMap());
-        //}
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            
+            modelBuilder.Configurations.Add(new AddressMap());
+            modelBuilder.Configurations.Add(new CustomerMap());
+            modelBuilder.Configurations.Add(new CustomerAddressMap());
+            modelBuilder.Configurations.Add(new ProductMap());
+            modelBuilder.Configurations.Add(new ProductCategoryMap());
+            modelBuilder.Configurations.Add(new ProductDescriptionMap());
+            modelBuilder.Configurations.Add(new ProductModelMap());
+            modelBuilder.Configurations.Add(new ProductModelProductDescriptionMap());
+            modelBuilder.Configurations.Add(new SalesOrderDetailMap());
+            modelBuilder.Configurations.Add(new SalesOrderHeaderMap());
+            modelBuilder.Configurations.Add(new CartItemMap());
+            
+        }
+       
     }
 }

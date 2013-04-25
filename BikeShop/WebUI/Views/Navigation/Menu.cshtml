@@ -7,7 +7,10 @@
     System.Text.StringBuilder links = new System.Text.StringBuilder();
 }
 <div class="parentcategory">
-    <span>@Html.ActionLink("All","List","Product",new {@style="font-size: 1.1em;"})</span>
+    <span>
+         @Html.RouteLink("All",  new {controller = "Product", action = "List"},
+                                    new {@class = displayclass, @style="font-size: 1.1em;"})
+    </span>
 </div>
 @foreach(var item in Model)
 {

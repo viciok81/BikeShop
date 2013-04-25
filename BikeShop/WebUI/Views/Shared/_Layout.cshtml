@@ -20,7 +20,12 @@
                 <span>Profile : @Html.ActionLink(HttpContext.Current.User.Identity.Name,"EditCustomer","Customer",null,new {@class = "nocorner"}) </span>
             </div>
             if (HttpContext.Current.User.IsInRole("user")) {Html.RenderAction("Summary", "Cart");}
-            
+            if (HttpContext.Current.User.IsInRole("admin"))
+            {
+                <div class="user" style="padding-left: 0;padding-right: 0;background: initial;">
+                    <span>@Html.ActionLink("Admin","Product","Admin",null,new {@class = "nocorner"})</span>
+                </div>
+            }
         }else
         {
             <div class="user" style="padding-left: 0;padding-right: 0;background: initial;">

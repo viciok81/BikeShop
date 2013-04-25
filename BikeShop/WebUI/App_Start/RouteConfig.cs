@@ -31,7 +31,9 @@ namespace WebUI
                 new { Controller = "Product", action = "List" },
                 new { page = @"\d+" }
             );
+
             routes.MapRoute(null,"{controller}/{action}");
+
             //routes.MapRoute(
             //    name: "Default",
             //    url: "{controller}/{action}/{id}",

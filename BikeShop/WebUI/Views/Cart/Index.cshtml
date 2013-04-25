@@ -13,7 +13,7 @@
         <th align="right">Subtotal</th>
     </tr></thead>
     <tbody>
-        @foreach(var line in Model.Cart.Items) {
+        @foreach(var line in Model.CartItems) {
             <tr>
                 <td align="center">@line.Quantity</td>
                 <td align="left">@line.Product.Name</td>
@@ -34,7 +34,7 @@
     <tfoot><tr>
         <td colspan="3" align="right">Total:</td>
         <td align="right">
-           @Model.Cart.ComputeTotalValue().ToString("c")
+           @Model.CartItems.Sum(e => e.Product.StandardCost * e.Quantity).ToString("c")
         </td>
     </tr></tfoot>
 </table>

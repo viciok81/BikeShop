@@ -1,12 +1,12 @@
-﻿@model Domain.Entities.Cart
+﻿@model IEnumerable<Domain.Entities.CartItem>
 @{
     Layout = null;
 }
 <div id="cart">
     <span class="caption">
         <b>Your cart:</b>
-        @Model.Items.Sum(x=>x.Quantity) item(s),
-        @Model.ComputeTotalValue().ToString("c")
+        @Model.Sum(x => x.Quantity) item(s),
+        @Model.Sum(e => e.Product.StandardCost * e.Quantity).ToString("c")
     </span>
         @Html.ActionLink("Checkout", "Index", "Cart", 
         new { returnUrl = Request.Url.PathAndQuery }, new {@class = "nocorner"})

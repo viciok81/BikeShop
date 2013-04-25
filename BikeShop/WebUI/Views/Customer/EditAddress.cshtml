@@ -1,4 +1,4 @@
-﻿@model Domain.Entities.Address
+﻿@model WebUI.Models.AddressViewModel
 
 @{
     ViewBag.Title = "EditAddress";
@@ -9,5 +9,6 @@
 @using(Html.BeginForm("EditAddress","Customer",FormMethod.Post)){
     @Html.ValidationSummary(true)
     @Html.EditorForModel()
+    @Html.EditorFor(x=>x.Address)
     <input type="submit" value="Save"/>
 }

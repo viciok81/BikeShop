@@ -182,3 +182,8 @@ div.user span a{text-decoration: none; padding: .4em 1em .4em 1em; line-height:2
 {
     width: 10%;
 }
+.Message {
+    color: red;
+    text-align: center;
+}
+

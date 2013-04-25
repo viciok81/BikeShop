@@ -46,8 +46,7 @@ namespace WebUI.Controllers
             }
             return View();
         }
-
-
+        
         public ViewResult Register()
         {
             return View(new RegisterViewModel());
@@ -80,12 +79,13 @@ namespace WebUI.Controllers
             var pass = StringUtils.getSaltHash(user.Password);
             newuser.PasswordHash = pass.SingleOrDefault(x => x.Key == "hash").Value;
             newuser.PasswordSalt = pass.SingleOrDefault(x => x.Key == "salt").Value;
+            newuser.NameStyle = false;
             try
             {
                 repository.Save(newuser);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
